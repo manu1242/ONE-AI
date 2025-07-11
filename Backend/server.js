@@ -8,8 +8,15 @@ dotenv.config();
 
 const app = express();
 
-// ✅ Enable CORS strictly
+// ✅ Enable CORS with OPTIONS preflight handling
 app.use(cors({
+  origin: "https://one-gpt-fumbnbdsf-manu1242s-projects.vercel.app",
+  methods: ["GET", "POST", "OPTIONS"],
+  credentials: true
+}));
+
+// ✅ Handle preflight OPTIONS requests
+app.options("*", cors({
   origin: "https://one-gpt-fumbnbdsf-manu1242s-projects.vercel.app",
   methods: ["GET", "POST", "OPTIONS"],
   credentials: true
@@ -24,6 +31,7 @@ app.get("/", (req, res) => {
 app.use("/api/openai", openaiRoutes);
 app.use("/api/gemini", openaiRoutes);
 
+// ✅ MongoDB connection
 mongoose.connect(process.env.MONGO_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
