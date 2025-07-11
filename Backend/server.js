@@ -17,7 +17,7 @@ app.use(cors({
 
 // ✅ Handle preflight OPTIONS requests
 app.options("*", cors({
-  origin: "https://one-gpt-fumbnbdsf-manu1242s-projects.vercel.app",
+  origin: "https://one-gpt-ai-one.vercel.app",
   methods: ["GET", "POST", "OPTIONS"],
   credentials: true
 }));
